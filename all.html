@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Evaluation</title>
+  <link rel="stylesheet" href="all.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Shri Madhwa Vadiraja Institute of Technology and Management</h2>
+    <h3>Performance Based Faculty Evaluation</h3>
+    <section>
+        <h3>Faculty Details</h3>
+        <form id="faculty-details">
+          <label for="faculty-name">Faculty Name:</label>
+          <input type="text" id="faculty-name" name="faculty-name" required><br><br>
+  
+          <label for="designation">Designation:</label>
+          <input type="text" id="designation" name="designation" required><br><br>
+  
+          <label for="department">Department:</label>
+          <input type="text" id="department" name="department" required><br><br>
+        </form>
+      </section>
+  
+    <section>
+        <h3>Section 1: Faculty Performance Evaluation</h3>
+
+        <!-- Evaluation Table -->
+        <table id="evaluation-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Criteria</th>
+                    <th colspan="2">Grading</th>
+                    <th rowspan="2">Weight</th>
+                    <th rowspan="2">Max GP (Grade x Weight)</th>
+                    <th colspan="2">Self-Assessment by Faculty</th>
+                    <th rowspan="2">Assessment by PAC</th>
+                    <th rowspan="2">Proof (Upload File)</th>
+                </tr>
+                <tr>
+                    <th>Grading 2</th>
+                    <th>Grading 1</th>
+                    <th>Grading (0/1/2)</th>
+                    <th>Grade Point (Grade x Weight)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student performance (in theory courses)</td>
+                    <td>Avg. Pass percentage >= 85%</td>
+                    <td>Avg. Pass percentage 75 to 84%</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                    <div class="preview"></div>
+                </td>
+                </tr>
+                <tr>
+                    <td>Student feedback (in theory courses)</td>
+                    <td>Average feedback >= 85%</td>
+                    <td>Average feedback 75 to 84%</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Performance of mentees</td>
+                    <td>Success rate >= 80%</td>
+                    <td>Success rate 60 to 79%</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>e-Learning resource development</td>
+                    <td>YouTube video > 5 hours</td>
+                    <td>YouTube video 1 to 5 hours</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Completion of faculty development programs</td>
+                    <td>>= 40 hours</td>
+                    <td>20 < x < 40 hours</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                <tr>
+                    <td>Attending online courses with exam and certifications</td>
+                    <td>>= 20 points</td>
+                    <td>10 to 19 points</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Funding for student projects</td>
+                    <td>>= 10,000</td>
+                    <td>3,000 to 9,999</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Professional Recognition from government agencies/registered academics</td>
+                    <td>International level</td>
+                    <td>National Level</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Collaboration with faculty from other universities</td>
+                    <td>International level</td>
+                    <td>National Level</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Developing software/hardware/apps/teaching aids</td>
+                    <td>Software/hardware</td>
+                    <td>Teaching aids</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="6">Total</th>
+                    <th id="total-grade-point1">0</th>
+                    <th colspan="2"></th>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <section>
+            <h3>Section 2: Research and Innovation</h3>
+            <table id="research-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Criteria</th>
+                        <th colspan="2">Grading</th>
+                        <th rowspan="2">Weight</th>
+                        <th rowspan="2">Max GP (Grade x Weight)</th>
+                        <th colspan="2">Self-Assessment by Faculty</th>
+                        <th rowspan="2">Assessment by PAC</th>
+                        <th rowspan="2">Proof (Upload File)</th>
+                    </tr>
+                    <tr>
+                        <th>Grading 2</th>
+                        <th>Grading 1</th>
+                        <th>Grading (0/1/2)</th>
+                        <th>Grade Point (Grade x Weight)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Journal Publication</td>
+                        <td>>= 20 points</td>
+                        <td>10 to 19 points</td>
+                        <td>15</td>
+                        <td>30</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="15"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Conference Presentations</td>
+                        <td>>= 10 points</td>
+                        <td>5 to 9 points</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Book Chapter/Book sections</td>
+                        <td>Minimum one in scopus/ Wos indexed</td>
+                        <td>Minimum one printed book with ISBN</td>
+                        <td>10</td>
+                        <td>20</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="10"></td>
+                        <td class="grade-point">0</td>
+                        <td><input type="number" min="0" max="2"></td>
+                        <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                            <div class="preview"></div>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>Patent Published/Granted</td>
+                        <td>Granted</td>
+                        <td>Applied</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                        <td class="grade-point">0</td>
+                        <td><input type="number" min="0" max="2"></td>
+                        <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                            <div class="preview"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Number of copyrights obtained</td>
+                        <td>>= 2 points</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td> Ph. D guiding/pursuing (Status of the research scholar attained during the assessment year)</td>
+                        <td>Ph. D awarded/Thesis submission</td>
+                        <td>Comprehensive Viva</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                        <td class="grade-point">0</td>
+                        <td><input type="number" min="0" max="2"></td>
+                        <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                            <div class="preview"></div>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>a.For principal investigator <br> b.For Co-principal ivestigator</td>
+                        <td>>5L <br> >10L</td>
+                        <td>1L to 5L <br> >5L </td>
+                        <td>20</td>
+                        <td>40</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="20"></td>
+                        <td class="grade-point">0</td>
+                        <td><input type="number" min="0" max="2"></td>
+                        <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                            <div class="preview"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Testing/Consultancy</td>
+                        <td>>= 2</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Paper review(only in scopus/Wos journal/conference)</td>
+                        <td>>= 2</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Keynote address/session chair of the committee</td>
+                        <td>international</td>
+                        <td>national</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Invited talk/GUest lecture(outside institute)</td>
+                        <td>>= 2</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td> 
+                    <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Resource person for FDP</td>
+                        <td>>= 2</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Editorial member(Scopus/Wos journal)</td>
+                        <td>>= 2</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Professional society recognition such as member of BOS,BOE,Academic senate,programming/technical committee member in conference outside (SMVITM)</td>
+                        <td>BOS/BOE/Academic Senate</td>
+                        <td>programming/technical committee member in conference</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">Total</th>
+                        <th id="total-grade-point2">0</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>        
+
+        <!-- Section 3: Administrative Service -->
+        <section>
+            <h3>Section 3: Administrative Service (Maximum 40 Grade Points)</h3>
+            <p>Faculty members with any one of the roles specified in List A will receive 40 grade points.</p>
+
+            <h3>List A Roles</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Role</th>
+                        <th>Maximum Number of Appointees</th>
+                        <th>S. No.</th>
+                        <th>Role</th>
+                        <th>Maximum Number of Appointees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>IQAC Coordinator</td>
+                        <td>One per college</td>
+                        <td>8</td>
+                        <td>ISTE Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>NSS Coordinator</td>
+                        <td>One per college</td>
+                        <td>9</td>
+                        <td>ICC Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>NCC Coordinator</td>
+                        <td>One per college</td>
+                        <td>10</td>
+                        <td>Anti-ragging cell Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Hostel Warden</td>
+                        <td>One per college</td>
+                        <td>11</td>
+                        <td>Co-curricular Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Alumini Coordinator</td>
+                        <td>One per college</td>
+                        <td>12</td>
+                        <td>Extra Curricular Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>EDC Coordinator</td>
+                        <td>One per college</td>
+                        <td>13</td>
+                        <td>SWAYAM Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>IGRC Coordinator</td>
+                        <td>One per college</td>
+                        <td>14</td>
+                        <td>WEBSITE Coordinator</td>
+                        <td>One per college</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Your Role from the List A (if any):</h3>
+            <input type="text" placeholder="Enter your role here">
+
+            <p>Faculty members with any one of the roles specified in List B will receive 20 grade points.</p>
+
+            <h3>List B Roles</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Role</th>
+                        <th>Maximum Number of Appointees</th>
+                        <th>S. No.</th>
+                        <th>Role</th>
+                        <th>Maximum Number of Appointees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>NAAC Criteria Coordinator</td>
+                        <td>Seven (One per criteria)</td>
+                        <td>9</td>
+                        <td>Alumini Department Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Institute Information Coordinator</td>
+                        <td>One per college</td>
+                        <td>10</td>
+                        <td>EDC Department Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>IEEE Coordinator</td>
+                        <td>One per college</td>
+                        <td>11</td>
+                        <td>ISTE Department Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sports Coordinator</td>
+                        <td>One per college</td>
+                        <td>12</td>
+                        <td>Extra-curicular Department Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Eco club Coordinator</td>
+                        <td>One per college</td>
+                        <td>13</td>
+                        <td> Department club Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>WEC Department Coordinator</td>
+                        <td>One per college</td>
+                        <td>14</td>
+                        <td> Department  EMS Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>NBA program Coordinator</td>
+                        <td>One per college</td>
+                        <td>15</td>
+                        <td>Library Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>NSS department Coordinator</td>
+                        <td>One per college</td>
+                        <td>16</td>
+                        <td>Department  Placement Coordinator</td>
+                        <td>One per department</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Your Role from the List B (if any):</h3>
+            <input type="text" placeholder="Enter your role here">
+
+            <h3>Section 4: HOD Aprraisal(Maximum 10 Grade Points) </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Criteria</th>
+                        <th colspan="2">Grading</th>
+                        <th rowspan="2">Weight</th>
+                        <th rowspan="2">Max GP (Grade x Weight)</th>
+                        <th colspan="2">Self-Assessment by Faculty</th>
+                        <th rowspan="2">Assessment by PAC</th>
+                        <th rowspan="2">Proof (Upload File)</th>
+                    </tr>
+                    <tr>
+                        <th>Grading 2</th>
+                        <th>Grading 1</th>
+                        <th>Grading (0/1/2)</th>
+                        <th>Grade Point (Grade x Weight)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HOD Appraisal</td>
+                        <td>>= 20 points</td>
+                        <td>10 to 19 points</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td><input type="number" min="0" max="2" class="grading-input" data-weight="5"></td>
+                    <td class="grade-point">0</td>
+                    <td><input type="number" min="0" max="2"></td>
+                    <td><input type="file" accept=".pdf,.jpg,.png,.doc,.docx" class="file-input">
+                        <div class="preview"></div>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            <div class="container">
+                <h1>Performance Allowance Calculator</h1>
+                <form id="calculatorForm">
+                  <label for="academics">Section 1 (Academics) Score (out of 150):</label>
+                  <input type="number" id="academics" placeholder="Enter score" required min="0" max="150">
+            
+                  <label for="research">Section 2 (Research) Score (out of 200):</label>
+                  <input type="number" id="research" placeholder="Enter score" required min="0" max="200">
+            
+                  <label for="administrative">Section 3 (Administrative Service) Score (out of 40):</label>
+                  <input type="number" id="administrative" placeholder="Enter score" required min="0" max="40">
+            
+                  <label for="hod">Section 4 (HOD Appraisal) Score (out of 10):</label>
+                  <input type="number" id="hod" placeholder="Enter score" required min="0" max="10">
+                </form>
+                <div class="result" id="result"></div>
+                <button type="button" id="submit-form" style="margin-top: 20px; padding: 10px 20px;">Submit & Download PDF</button>
+            </div>
+              <script src="all.js"></script>
+</body>
+</html>
